@@ -21,9 +21,8 @@ public class Contribuinte {
 		return cpf;
 	}
 	
-	public String adicionarTarifa(Tarifa tarifa) {
+	public void adicionarTarifa(Tarifa tarifa) {
 		tarifas.add(tarifa);
-		return "| TRIBUTO ADICIONADO COM SUCESSO |";
 	}
 
 	@Override

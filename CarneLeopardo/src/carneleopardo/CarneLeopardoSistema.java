@@ -1,7 +1,5 @@
 package carneleopardo;
 
-import java.util.Map;
-
 public class CarneLeopardoSistema {
 	Contribuinte[] contribuintes;
 	Tarifa [] tarifas;
@@ -23,9 +21,9 @@ public class CarneLeopardoSistema {
 			return contribuinte.toString();
 			}
 		}
-		return "Contribuinte já cadastrado!";	 
+		return "Contribuinte já cadastrado!";
 	}
-	public void listarContribuintes(Contribuinte [] contribuintes) { 
+	public void listarContribuintes(Contribuinte [] contribuintes) {
 		for(int i = 0; i < contribuintes.length; i++) {
 			if(!contribuintes[i].equals(null)) {
 				System.out.println(contribuintes[i].toString());
@@ -54,6 +52,28 @@ public class CarneLeopardoSistema {
 			}
 		}
 	}
+
+	public String atribuirTributoAoContribuinte(int codigoTributo, String cpfContribuinte){
+		Tarifa tributo;
+		for(int i = 0; i < tarifas.length; i++) {
+			if(!tarifas[i].equals(null) && tarifas[i].getCodigo() == codigoTributo) {
+				tributo = new Tarifa (tarifas[i].getCodigo(), tarifas[i].getDescricao(), tarifas[i].getValor(), tarifas[i].getAno());
+			}
+			return "| TRIBUTO OU CONTRIBUINTE NÃO ENCONTRADO |";
+		}
+		for(int i = 0; i < contribuintes.length; i++) {
+			if(!contribuintes[i].equals(null) && contribuintes[i].getCpf() == cpfContribuinte && !tributo.equals(null)) {
+				contribuintes[i].adicionarTarifa(tributo);
+				return "| TRIBUTO ADICIONADO COM SUCESSO |";
+			}
+		}
+		return "| TRIBUTO OU CONTRIBUINTE NÃO ENCONTRADO |";
+	}
+	public String pagarTributo(String cpfContribuinte, int codigoTributo){
+
+		return "";
+	}
+
 	public double reajustarTributo(int codigoTributo, int ano, double percentual) {
 		if(tarifas[codigoTributo] == null) {
 			return 0;

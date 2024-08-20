@@ -9,6 +9,7 @@ public class Tarifa {
 	int ano;
 	boolean status;
 	ArrayList<Contribuinte> contribuintes;
+    public Tarifa clone;
 	
 	public Tarifa(int codigo, String descricao, double valor, int ano) {
 		this.codigo = codigo;
@@ -20,6 +21,22 @@ public class Tarifa {
 	
 	public void pagar() {
 		this.status = true;
+	}
+
+	public int getCodigo(){
+		return codigo;
+	}
+
+	public String getDescricao(){
+		return descricao;
+	}
+
+	public double getValor(){
+		return valor;
+	}
+
+	public int getAno(){
+		return ano;
 	}
 
 	public void adicionarContribuinte(Contribuinte contribuinte) {

@@ -16,7 +16,46 @@ public class Contribuinte {
 		this.tarifas = new ArrayList<Tarifa>();
 	}
 
+	public boolean buscarTributo(int codigoTributo){
+		for(Tarifa tarifa: this.tarifas){
+			if(codigoTributo == tarifa.getCodigo()){
+				return true;
+			}
+		}
+		return false;
+	}
 	
+	public boolean setTributoPago(int codigoTributo){
+		for(Tarifa tarifa: this.tarifas){
+			if(codigoTributo == tarifa.getCodigo()){
+				tarifa.pagar();
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String extrato(){
+		String todosExtratos = "";
+		for(Tarifa tarifa: tarifas){
+			if(tarifa.getStatus()){
+				todosExtratos += ("| SIM | " + tarifa.toString());
+			}
+			todosExtratos += ("| NÃO |" + tarifa.toString());
+		}
+		return todosExtratos;
+	}
+
+	public double totalPagos(int ano){
+		double total = 0;
+		for(Tarifa tarifa: this.tarifas){
+			if(tarifa.getAno() == ano){
+				total += tarifa.getValor();
+			}
+		}
+		return total;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
